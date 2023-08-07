@@ -61,7 +61,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         source: "./publish/published-artifacts.tar.gz"
-        target: C:/Users/Administrator/Desktop/
+        target: C:\Projects
   # site-a:
   #   needs: send-file
   #   runs-on: ubuntu-latest
