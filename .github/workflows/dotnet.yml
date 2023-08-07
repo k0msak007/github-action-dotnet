@@ -74,7 +74,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: cd ../../ && cd Projects && cd publish/published-artifacts.tar.gz && copy published-artifacts.tar.gz C:\Projects\Site-A && cd ../../ && cd Site-A && tar -xzvf published-artifacts.tar.gz
   site-b:
-    needs: send-file
+    needs: [send-file, site-a]
     runs-on: ubuntu-latest
     steps:
       - name: deploy Site-B
@@ -85,7 +85,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: cd ../../ && cd Projects && cd publish/published-artifacts.tar.gz && copy published-artifacts.tar.gz C:\Projects\Site-B && cd ../../ && cd Site-B && tar -xzvf published-artifacts.tar.gz
   site-c:
-    needs: send-file
+    needs: [send-file, site-b]
     runs-on: ubuntu-latest
     steps:
       - name: deploy Site-C
