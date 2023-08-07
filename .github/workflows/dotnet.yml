@@ -39,7 +39,8 @@ jobs:
     - name: Path directory
       run: |
         ls
-  deploy:
+
+  send-file:
     needs: build
     runs-on: ubuntu-latest
 
@@ -53,7 +54,7 @@ jobs:
         name: published-artifacts
         path: ./publish/published-artifacts.tar.gz
 
-    - name: copy file via ssh password
+    - name: copy file with ssh
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.HOST }}
@@ -61,3 +62,14 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         source: "./publish/published-artifacts.tar.gz"
         target: C:/Users/Administrator/Desktop/
+  # site-a:
+  #   needs: send-file
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: deploy Site-A
+  #       uses: appleboy/ssh-action@v1.0.0
+  #       with:
+  #         host: ${{ secrets.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         password: ${{ secrets.PASSWORD }}
+  #         script: cd ../../ && cd Site-A && 
