@@ -27,10 +27,7 @@ jobs:
     - name: Archive published artifacts
       run: |
         ls
-        cd publish
-        tar -czvf published-artifacts.tar.gz ./publish/*
 
-        ls
 
   #   - name: Upload artifact
   #     uses: actions/upload-artifact@v2
