@@ -26,22 +26,19 @@ jobs:
 
     - name: Archive published artifacts
       run: |
-        ls
         cd publish
         tar -czvf published-artifacts.tar.gz *
 
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: published-artifacts
+        path: ./publish/published-artifacts.tar.gz
+        retention-days: 1
+
+    - name: Path directory
+      run: |
         ls
-
-  #   - name: Upload artifact
-  #     uses: actions/upload-artifact@v2
-  #     with:
-  #       name: published-artifacts
-  #       path: published-artifacts.tar.gz
-  #       retention-days: 1
-
-  #   - name: Path directory
-  #     run: |
-  #       ls
   # deploy:
   #   needs: build
   #   runs-on: ubuntu-latest
