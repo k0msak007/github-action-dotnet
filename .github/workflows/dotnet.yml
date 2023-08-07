@@ -51,10 +51,11 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: published-artifacts
-        path: published-artifacts.tar.gz
+        path: ./publish/published-artifacts.tar.gz
 
     - name: Extract published artifacts
       run: |
+        cd publish
         mkdir published-artifacts
         ls
         tar -xvzf published-artifacts.tar.gz -C published-artifacts
