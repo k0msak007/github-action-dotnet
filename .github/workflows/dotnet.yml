@@ -37,5 +37,24 @@ jobs:
 
     - name: Path directory
       run: |
-        
+        ls
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Download published artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: published-artifacts
+        path: published-artifacts.tar.gz
+
+    - name: Extract published artifacts
+      run: |
+        mkdir published-artifacts
+        tar -xzvf published-artifacts.tar.gz -C published-artifacts
+
         ls
