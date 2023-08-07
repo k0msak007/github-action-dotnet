@@ -31,3 +31,11 @@ jobs:
         run: |
           pwd
           ls
+
+      - name: check-out
+        uses: actions/checkout@v3
+
+      - name: ls and pwd after checkout
+        run: |
+          pwd
+          ls
