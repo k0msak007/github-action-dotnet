@@ -39,22 +39,22 @@ jobs:
     - name: Path directory
       run: |
         ls
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v2
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-  #   - name: Download published artifacts
-  #     uses: actions/download-artifact@v2
-  #     with:
-  #       name: published-artifacts
-  #       path: published-artifacts.tar.gz
+    - name: Download published artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: published-artifacts
+        path: published-artifacts.tar.gz
 
-  #   - name: Extract published artifacts
-  #     run: |
-  #       mkdir published-artifacts
-  #       ls
-  #       tar -xzvf published-artifacts.tar.gz -C published-artifacts
+    - name: Extract published artifacts
+      run: |
+        mkdir published-artifacts
+        ls
+        tar -xvzf published-artifacts.tar.gz -C published-artifacts
