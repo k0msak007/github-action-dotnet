@@ -26,34 +26,38 @@ jobs:
 
     - name: Archive published artifacts
       run: |
-        tar -czvf published-artifacts.tar.gz ./publish
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: published-artifacts
-        path: published-artifacts.tar.gz
-        retention-days: 1
-
-    - name: Path directory
-      run: |
         ls
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
+        cd publish
+        tar -czvf published-artifacts.tar.gz ./publish/*
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Download published artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: published-artifacts
-        path: published-artifacts.tar.gz
-
-    - name: Extract published artifacts
-      run: |
-        mkdir published-artifacts
         ls
-        tar -xzvf published-artifacts.tar.gz -C published-artifacts
+
+  #   - name: Upload artifact
+  #     uses: actions/upload-artifact@v2
+  #     with:
+  #       name: published-artifacts
+  #       path: published-artifacts.tar.gz
+  #       retention-days: 1
+
+  #   - name: Path directory
+  #     run: |
+  #       ls
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v2
+
+  #   - name: Download published artifacts
+  #     uses: actions/download-artifact@v2
+  #     with:
+  #       name: published-artifacts
+  #       path: published-artifacts.tar.gz
+
+  #   - name: Extract published artifacts
+  #     run: |
+  #       mkdir published-artifacts
+  #       ls
+  #       tar -xzvf published-artifacts.tar.gz -C published-artifacts
