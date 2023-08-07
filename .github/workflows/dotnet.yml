@@ -58,4 +58,4 @@ jobs:
         cd publish
         mkdir published-artifacts
         ls
-        tar -xvzf published-artifacts.tar.gz -C published-artifacts
+        tar -xvzf published-artifacts.tar.gz
