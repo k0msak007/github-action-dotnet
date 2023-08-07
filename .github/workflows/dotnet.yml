@@ -79,7 +79,7 @@ jobs:
             copy published-artifacts.tar.gz C:\Projects\Site-A
             cd ../../
             cd Site-A
-            tar -xzvf published-artifacts.tar.gz
+            tar --overwrite -xzvf published-artifacts.tar.gz
   site-b:
     needs: send-file
     runs-on: ubuntu-latest
@@ -97,7 +97,7 @@ jobs:
             copy published-artifacts.tar.gz C:\Projects\Site-B
             cd ../../
             cd Site-B
-            tar -xzvf published-artifacts.tar.gz
+            tar --overwrite -xzvf published-artifacts.tar.gz
   site-c:
     needs: send-file
     runs-on: ubuntu-latest
@@ -115,4 +115,4 @@ jobs:
             copy published-artifacts.tar.gz C:\Projects\Site-C
             cd ../../
             cd Site-C
-            tar -xzvf published-artifacts.tar.gz
+            tar --overwrite -xzvf published-artifacts.tar.gz
