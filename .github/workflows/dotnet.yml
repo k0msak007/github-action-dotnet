@@ -53,9 +53,11 @@ jobs:
         name: published-artifacts
         path: ./publish/published-artifacts.tar.gz
 
-    - name: Extract published artifacts
-      run: |
-        cd publish
-        mkdir published-artifacts
-        ls
-        tar -xvzf published-artifacts.tar.gz
+    - name: copy file via ssh password
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        source: "./publish/published-artifacts.tar.gz"
+        target: C:/Users/Administrator/Desktop/
