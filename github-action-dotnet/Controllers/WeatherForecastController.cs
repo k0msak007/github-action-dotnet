@@ -23,7 +23,6 @@ namespace github_action_dotnet.Controllers
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
-                Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Days = Random.Shared.Next(0, 6),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
