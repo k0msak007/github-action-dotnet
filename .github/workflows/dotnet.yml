@@ -37,5 +37,5 @@ jobs:
 
     - name: Path directory
       run: |
-        cd github-action-dotnet/bin/publish
+        cd github-action-dotnet/
         ls
