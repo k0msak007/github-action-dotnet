@@ -24,13 +24,13 @@ jobs:
       run: |
         dotnet publish --configuration Release --output ./publish
 
-    - name: Move published artifacts
-      run: |
-        mv ./publish/* ./
-
     - name: Archive published artifacts
       run: |
+        ls
+        cd publish
         tar -czvf published-artifacts.tar.gz *
+
+        ls
 
   #   - name: Upload artifact
   #     uses: actions/upload-artifact@v2
