@@ -27,7 +27,7 @@ jobs:
     - name: Archive published artifacts
       run: |
         cd publish
-        tar -czvf published-artifacts.tar.gz *
+        tar --exclude={"web.config", "appsettings.json", "appsettings.Development.json"} -czvf published-artifacts.tar.gz *
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
@@ -62,14 +62,57 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         source: "./publish/published-artifacts.tar.gz"
         target: C:\Projects
-  # site-a:
-  #   needs: send-file
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: deploy Site-A
-  #       uses: appleboy/ssh-action@v1.0.0
-  #       with:
-  #         host: ${{ secrets.HOST }}
-  #         username: ${{ secrets.USERNAME }}
-  #         password: ${{ secrets.PASSWORD }}
-  #         script: cd ../../ && cd Site-A && 
+  site-a:
+    needs: send-file
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy Site-A
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: | 
+            cd ../../
+            cd Projects
+            cd publish/published-artifacts.tar.gz
+            copy published-artifacts.tar.gz C:\Projects\Site-A
+            cd ../../
+            cd Site-A
+            tar -xzvf published-artifacts.tar.gz
+  site-b:
+    needs: send-file
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy Site-A
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: | 
+            cd ../../
+            cd Projects
+            cd publish/published-artifacts.tar.gz
+            copy published-artifacts.tar.gz C:\Projects\Site-B
+            cd ../../
+            cd Site-A
+            tar -xzvf published-artifacts.tar.gz
+  site-c:
+    needs: send-file
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy Site-A
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: | 
+            cd ../../
+            cd Projects
+            cd publish/published-artifacts.tar.gz
+            copy published-artifacts.tar.gz C:\Projects\Site-C
+            cd ../../
+            cd Site-A
+            tar -xzvf published-artifacts.tar.gz

@@ -25,6 +25,7 @@ namespace github_action_dotnet.Controllers
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
+                TemperatureF = Random.Shared.Next(-1, 5),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
