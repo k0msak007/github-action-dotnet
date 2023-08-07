@@ -72,7 +72,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: cd ../../ && cd Projects && cd publish/published-artifacts.tar.gz && copy published-artifacts.tar.gz C:\Projects\Site-A && cd ../../ && cd Site-A && tar -xzvf published-artifacts.tar.gz
+          script: cd ../../ && cd Projects && cd publish/published-artifacts.tar.gz && copy published-artifacts.tar.gz C:\Projects\Site-A && cd ../../ && cd Site-A && iisreset && tar -xzvf published-artifacts.tar.gz
   site-b:
     needs: send-file
     runs-on: ubuntu-latest
