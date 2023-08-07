@@ -53,13 +53,10 @@ jobs:
         name: published-artifacts
         path: published-artifacts.tar.gz
     
-    - name: Path directory
-      run: |
-        ls
 
     - name: Extract published artifacts
       run: |
         mkdir published-artifacts
-        unzip published-artifacts.zip -d published-artifacts
+        unzip published-artifacts.tar.gz -d published-artifacts
 
         ls
