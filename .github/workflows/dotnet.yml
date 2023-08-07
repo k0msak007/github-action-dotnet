@@ -27,7 +27,7 @@ jobs:
     - name: Archive published artifacts
       run: |
         cd publish
-        tar --exclude={"web.config", "appsettings.json", "appsettings.Development.json"} -czvf published-artifacts.tar.gz *
+        tar --exclude="appsettings.json" --exclude="appsettings.Development.json" --exclude="web.config" -czvf published-artifacts.tar.gz *
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
