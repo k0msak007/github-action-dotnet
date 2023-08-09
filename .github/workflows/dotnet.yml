@@ -62,6 +62,17 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         source: "./publish/published-artifacts.tar.gz"
         target: C:\Projects
+  reset-iis:
+    needs: send-file
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy Site-A
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: iisreset
   site-a:
     needs: send-file
     runs-on: ubuntu-latest
@@ -72,7 +83,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: cd ../../ && cd Projects && cd publish/published-artifacts.tar.gz && copy published-artifacts.tar.gz C:\Projects\Site-A && cd ../../ && cd Site-A && iisreset && tar -xzvf published-artifacts.tar.gz
+          script: cd ../../ && cd Projects && cd publish/published-artifacts.tar.gz && copy published-artifacts.tar.gz C:\Projects\Site-A && cd ../../ && cd Site-A && tar -xzvf published-artifacts.tar.gz
   site-b:
     needs: send-file
     runs-on: ubuntu-latest
