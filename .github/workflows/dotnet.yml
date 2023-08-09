@@ -4,7 +4,7 @@
 name: .NET
 
 on:
-  push:
+  pull_request: 
     branches: [ "master" ]
 
 jobs:
@@ -78,6 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy Site-A
+        if: startsWith(github.event.pull_request.title, 'deploy') && contains(github.event.pull_request.title, 'site-a')
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
@@ -89,6 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy Site-B
+        if: startsWith(github.event.pull_request.title, 'deploy') && contains(github.event.pull_request.title, 'site-b')
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
@@ -100,6 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy Site-C
+        if: startsWith(github.event.pull_request.title, 'deploy') && contains(github.event.pull_request.title, 'site-c')
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
