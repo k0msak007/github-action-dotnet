@@ -24,7 +24,7 @@ namespace github_action_dotnet.Controllers
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Days = Random.Shared.Next(95, 99),
+                Days = Random.Shared.Next(90, 99),
             })
             .ToArray();
         }
